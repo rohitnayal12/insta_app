@@ -9,9 +9,10 @@ const postRouter=express.Router()
 
 postRouter.post("/add",auth,async(req,res)=>{
     try {
-        post= await PostModel(req.body)
+        post= new PostModel(req.body)
+       
         await post.save()
-        return res.statusCode(200).send({msg:"A new post has been done successfully."})
+        return res.status(200).send({msg:"A new post has been done successfully."})
     } catch (error) {
         res.send({error:error})
         
